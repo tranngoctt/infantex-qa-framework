@@ -13,6 +13,7 @@ Bài toán cần giải quyết:
 - giữ nội dung **đúng, đủ, rõ ràng, ngắn gọn, có cấu trúc**
 - giảm tình trạng testcase dài, khó theo dõi, khó bảo trì
 - giữ khả năng **mở rộng** khi số lượng case tăng hoặc phạm vi test thay đổi
+- tạo nền phù hợp để phục vụ automation về sau mà không cần thay đổi toàn bộ format
 
 Phạm vi của báo cáo này:
 - chỉ tập trung vào **format TCS**
