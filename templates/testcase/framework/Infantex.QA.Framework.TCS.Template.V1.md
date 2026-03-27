@@ -1,7 +1,7 @@
 # Infantex.QA.Framework.TCS.Template.V1.2
 
 **Người tạo report:** NgocTran, Nguyễn Ngọc Duy, Hà
-
+**Ngày tạo:** 27/03/2026
 ## 1. Mục tiêu
 
 Báo cáo này dùng để đề xuất và chuẩn hóa **format Test Case (TCS) Ver1.2**.
