@@ -1,8 +1,10 @@
 # Infantex.QA.Framework.TCS.Template.V1.2
 
+**Người tạo report:** NgocTran, Nguyễn Ngọc Duy, Hà
+
 ## 1. Mục tiêu
 
-Báo cáo này dùng để đề xuất và chuẩn hóa **format Test Case (TCS) Ver1**.
+Báo cáo này dùng để đề xuất và chuẩn hóa **format Test Case (TCS) Ver1.2**.
 
 Bài toán cần giải quyết:
 
@@ -29,7 +31,7 @@ Format TCS được đề xuất cần đáp ứng các tiêu chí sau:
 - **Ngắn gọn**: mỗi case trình bày gọn, không gây quá tải khi theo dõi
 - **Có cấu trúc**: các cột ổn định, dễ theo dõi và dễ quản lý
 - **Tuần tự**: steps đi theo đúng thứ tự thao tác thực tế
-- **Mở rộng được**: bổ sung thêm case, module, flow mà không phá vỡ format
+- **Mở rộng được**: bổ sung thêm case, area, platform, flow mà không phá vỡ format
 - **Tinh gọn và thông minh**: hỗ trợ tốt cho việc đọc, review, quản lý và tái sử dụng
 
 Format này được lựa chọn dựa trên các tiêu chí sau:
@@ -37,7 +39,7 @@ Format này được lựa chọn dựa trên các tiêu chí sau:
 - ưu tiên khả năng sử dụng thực tế trong công việc hằng ngày
 - ưu tiên ngôn ngữ rõ ràng, dễ tiếp cận với nhiều nhóm người dùng
 - phù hợp cho tester, intern, lead và các bên liên quan cùng theo dõi
-- đủ chuẩn để áp dụng thống nhất trong Ver1 mà không tạo thêm độ phức tạp không cần thiết
+- tham chiếu được với mẫu game QA đang dùng nhưng vẫn giữ độ gọn cần thiết cho Ver1.2
 
 ---
 
@@ -54,9 +56,9 @@ Format được chọn là **business-readable TCS format**.
 - không hiển thị mã step kỹ thuật ở mặt trước
 - nhìn vào bảng là hiểu case đang kiểm tra gì và cách thực hiện như thế nào
 
-### 3.2. Bảng format chuẩn Ver1
+### 3.2. Bảng format chuẩn Ver1.2
 
-| TC ID | Module | Feature | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Automation Potential | Execution Status | Actual Result | Note |
+| TC ID | Area | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Platform | Automation Potential | Execution Status | Actual Result | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
 ### 3.3. Ý nghĩa từng cột
@@ -64,8 +66,7 @@ Format được chọn là **business-readable TCS format**.
 | Cột | Mục đích sử dụng |
 |---|---|
 | TC ID | Mã testcase duy nhất |
-| Module | Nhóm chức năng lớn |
-| Feature | Chức năng cụ thể |
+| Area | Khu vực hoặc nhóm chức năng chính |
 | Scenario | Nội dung kiểm tra chính của case |
 | Preconditions | Điều kiện cần trước khi chạy |
 | Test Data | Dữ liệu đầu vào tác động trực tiếp tới case |
@@ -73,16 +74,19 @@ Format được chọn là **business-readable TCS format**.
 | Expected Result | Kết quả mong đợi rõ, đo được |
 | Priority | Mức ưu tiên chạy test |
 | Test Type | Loại test để lọc và nhóm |
+| Platform | Nền tảng áp dụng cho testcase |
 | Automation Potential | Mức độ phù hợp để đưa vào automation |
 | Execution Status | Trạng thái chạy test |
 | Actual Result | Kết quả thực tế; khi cần có thể ghi ngắn hiện tượng hoặc Jira ID/link |
 | Note | Ghi chú ngắn nếu cần |
 
-### 3.4. Bộ giá trị chuẩn dùng trong Ver1
+### 3.4. Bộ giá trị chuẩn dùng trong Ver1.2
 
 | Trường | Giá trị chuẩn |
 |---|---|
 | Priority | Critical / High / Medium / Low |
+| Test Type | Smoke / Regression / Positive / Negative / Boundary / Validation / Integration / Config |
+| Platform | Cross-platform / Android / iOS / Web / Steam / Backend / Other |
 | Automation Potential | High / Medium / Low / No |
 | Execution Status | Not Run / Pass / Fail / Blocked |
 | Actual Result rule | Pass = để trống / Fail = 1 câu ngắn mô tả sai khác chính hoặc Jira ID/link / Blocked = Blocked due to ... / Not Run = để trống |
@@ -91,19 +95,21 @@ Format được chọn là **business-readable TCS format**.
 
 Format này được sử dụng theo logic sau:
 
-- **Scenario** xác định nội dung cần kiểm tra
+- **Area** xác định khu vực chức năng cần kiểm tra
+- **Scenario** xác định nội dung kiểm tra cụ thể
 - **Preconditions** xác định trạng thái cần có trước khi thực hiện
 - **Test Data** xác định dữ liệu cần sử dụng
 - **Test Steps** xác định trình tự thao tác
 - **Expected Result** xác định kết quả được xem là đạt
+- **Platform** xác định nơi testcase được áp dụng
 - **Execution Status / Actual Result** ghi nhận kết quả thực tế sau khi chạy
 
 Người chạy test theo dõi lần lượt theo trình tự:
-**Scenario -> Preconditions -> Test Data -> Test Steps -> Expected Result -> Execution**
+**Area -> Scenario -> Preconditions -> Test Data -> Test Steps -> Expected Result -> Platform -> Execution**
 
 ### 3.6. Quy tắc ghi Execution Status và Actual Result
 
-| Trường | Cách dùng chuẩn trong Ver1 |
+| Trường | Cách dùng chuẩn trong Ver1.2 |
 |---|---|
 | Execution Status | Ghi trạng thái chạy case: Not Run / Pass / Fail / Blocked |
 | Actual Result | Chỉ ghi khi case không pass hoặc khi cần theo dõi thêm; không bắt buộc ghi cho case pass |
@@ -128,6 +134,12 @@ Người chạy test theo dõi lần lượt theo trình tự:
 
 ### 3.7. Bộ mẫu cách viết để intern cũng có thể sử dụng
 
+#### Mẫu viết Area
+- Account
+- Gameplay
+- Economy
+- Network
+
 #### Mẫu viết Scenario
 - Cho phép login với tài khoản hợp lệ
 - Không cho lưu khi Name trống
@@ -147,10 +159,10 @@ Người chạy test theo dõi lần lượt theo trình tự:
 
 ### 3.8. Bộ mẫu testcase ngắn
 
-| TC ID | Module | Feature | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Automation Potential | Execution Status | Actual Result | Note |
+| TC ID | Area | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Platform | Automation Potential | Execution Status | Actual Result | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| LOGIN_01 | Authentication | Login | Cho phép login với tài khoản hợp lệ | App đang ở màn Login | username=valid_user; password=valid_pass | 1. Nhập username hợp lệ  2. Nhập password hợp lệ  3. Bấm Login  4. Kiểm tra kết quả | User vào Home thành công | Critical | Smoke | High | Pass |  | Core flow |
-| PROF_02 | Profile | Update Name | Không cho lưu khi Name trống | User đã login | Name="" | 1. Mở màn hình Profile  2. Xóa toàn bộ Name  3. Bấm Save  4. Kiểm tra kết quả | Không lưu dữ liệu, hiển thị lỗi “Name is required” | High | Validation | Medium | Fail | System allowed saving with empty Name - JIRA-123 | Required field |
+| TC-ACCOUNT-001 | Account | Cho phép login với tài khoản hợp lệ | App đang ở màn Login | username=valid_user; password=valid_pass | 1. Nhập username hợp lệ  2. Nhập password hợp lệ  3. Bấm Login  4. Kiểm tra kết quả | User vào Home thành công | Critical | Smoke | Cross-platform | High | Pass |  | Core flow |
+| TC-PROFILE-002 | Profile | Không cho lưu khi Name trống | User đã login | Name="" | 1. Mở màn hình Profile  2. Xóa toàn bộ Name  3. Bấm Save  4. Kiểm tra kết quả | Không lưu dữ liệu, hiển thị lỗi “Name is required” | High | Validation | Web | Medium | Fail | System allowed saving with empty Name - JIRA-123 | Required field |
 
 ---
 
@@ -164,6 +176,7 @@ Format này phù hợp với các nhu cầu sau:
 - hỗ trợ nhiều đối tượng cùng sử dụng, bao gồm tester, intern, lead và các bên liên quan
 - giảm độ dài và độ rối của testcase so với cách viết truyền thống
 - hỗ trợ review, lọc, nhóm và quản lý testcase thuận tiện hơn
+- bổ sung được thông tin nền tảng áp dụng mà không làm bảng quá nặng
 - tạo nền tảng ổn định để chuẩn hóa tài liệu test trong giai đoạn đầu
 
 ### 4.2. Phạm vi áp dụng phù hợp
@@ -175,6 +188,7 @@ Format này phù hợp trong các trường hợp:
 - nhóm người dùng có nhiều mức kinh nghiệm khác nhau
 - môi trường làm việc cần ưu tiên tính rõ ràng và khả năng sử dụng thực tế
 - trường hợp cần một format chung để vừa thiết kế case vừa ghi nhận execution cơ bản
+- dự án cần phân biệt testcase theo nền tảng áp dụng
 
 ### 4.3. Trường hợp cần cân nhắc mở rộng thêm
 
@@ -190,5 +204,5 @@ Các thành phần có thể bổ sung ở các phiên bản sau:
 - Test Pack
 - Dataset Ref
 - reusable step mapping
-- flow group / module group
+- flow group
 - execution tách riêng theo từng run
