@@ -1,4 +1,4 @@
-# Infantex.QA.Framework.TCS.Template.V1
+# Infantex.QA.Framework.TCS.Template.V1.2
 
 ## 1. Mục tiêu
 
@@ -56,8 +56,8 @@ Format được chọn là **business-readable TCS format**.
 
 ### 3.2. Bảng format chuẩn Ver1
 
-| TC ID | Module | Feature | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Automation Potential | Execution Status | Actual Result | Bug Link | Note |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| TC ID | Module | Feature | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Automation Potential | Execution Status | Actual Result | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
 ### 3.3. Ý nghĩa từng cột
 
@@ -75,8 +75,7 @@ Format được chọn là **business-readable TCS format**.
 | Test Type | Loại test để lọc và nhóm |
 | Automation Potential | Mức độ phù hợp để đưa vào automation |
 | Execution Status | Trạng thái chạy test |
-| Actual Result | Kết quả thực tế |
-| Bug Link | Link bug nếu fail |
+| Actual Result | Kết quả thực tế; khi cần có thể ghi ngắn hiện tượng hoặc Jira ID/link |
 | Note | Ghi chú ngắn nếu cần |
 
 ### 3.4. Bộ giá trị chuẩn dùng trong Ver1
@@ -86,7 +85,7 @@ Format được chọn là **business-readable TCS format**.
 | Priority | Critical / High / Medium / Low |
 | Automation Potential | High / Medium / Low / No |
 | Execution Status | Not Run / Pass / Fail / Blocked |
-| Test Type | Smoke / Regression / Positive / Negative / Boundary / Validation / Integration / Config |
+| Actual Result rule | Pass = để trống / Fail = 1 câu ngắn mô tả sai khác chính hoặc Jira ID/link / Blocked = Blocked due to ... / Not Run = để trống |
 
 ### 3.5. Cách vận hành của format này
 
@@ -97,12 +96,37 @@ Format này được sử dụng theo logic sau:
 - **Test Data** xác định dữ liệu cần sử dụng
 - **Test Steps** xác định trình tự thao tác
 - **Expected Result** xác định kết quả được xem là đạt
-- **Execution Status / Actual Result / Bug Link** ghi nhận kết quả thực tế sau khi chạy
+- **Execution Status / Actual Result** ghi nhận kết quả thực tế sau khi chạy
 
 Người chạy test theo dõi lần lượt theo trình tự:
 **Scenario -> Preconditions -> Test Data -> Test Steps -> Expected Result -> Execution**
 
-### 3.6. Bộ mẫu cách viết để intern cũng có thể sử dụng
+### 3.6. Quy tắc ghi Execution Status và Actual Result
+
+| Trường | Cách dùng chuẩn trong Ver1 |
+|---|---|
+| Execution Status | Ghi trạng thái chạy case: Not Run / Pass / Fail / Blocked |
+| Actual Result | Chỉ ghi khi case không pass hoặc khi cần theo dõi thêm; không bắt buộc ghi cho case pass |
+
+#### Giá trị mặc định đề xuất
+- **Execution Status**: `Not Run`
+- **Actual Result**: để trống
+
+#### Quy tắc điền Actual Result theo từng trạng thái
+- **Pass** -> để trống
+- **Fail** -> ghi **1 câu ngắn mô tả sai khác chính** hoặc **Jira ID/link** nếu cần theo dõi nhanh
+- **Blocked** -> `Blocked due to ...`
+- **Not Run** -> để trống
+
+#### Ví dụ
+| Execution Status | Actual Result |
+|---|---|
+| Pass |  |
+| Fail | System allowed saving with empty Name - JIRA-123 |
+| Blocked | Blocked due to test environment unavailable |
+| Not Run |  |
+
+### 3.7. Bộ mẫu cách viết để intern cũng có thể sử dụng
 
 #### Mẫu viết Scenario
 - Cho phép login với tài khoản hợp lệ
@@ -121,12 +145,12 @@ Người chạy test theo dõi lần lượt theo trình tự:
 - Không lưu dữ liệu, hiển thị lỗi “Name is required”
 - Nút Confirm bị disable
 
-### 3.7. Bộ mẫu testcase ngắn
+### 3.8. Bộ mẫu testcase ngắn
 
-| TC ID | Module | Feature | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Automation Potential | Execution Status | Actual Result | Bug Link | Note |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| LOGIN_01 | Authentication | Login | Cho phép login với tài khoản hợp lệ | App đang ở màn Login | username=valid_user; password=valid_pass | 1. Nhập username hợp lệ  2. Nhập password hợp lệ  3. Bấm Login  4. Kiểm tra kết quả | User vào Home thành công | Critical | Smoke | High | Not Run |  |  | Core flow |
-| PROF_02 | Profile | Update Name | Không cho lưu khi Name trống | User đã login | Name="" | 1. Mở màn hình Profile  2. Xóa toàn bộ Name  3. Bấm Save  4. Kiểm tra kết quả | Không lưu dữ liệu, hiển thị lỗi “Name is required” | High | Validation | Medium | Not Run |  |  | Required field |
+| TC ID | Module | Feature | Scenario | Preconditions | Test Data | Test Steps | Expected Result | Priority | Test Type | Automation Potential | Execution Status | Actual Result | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| LOGIN_01 | Authentication | Login | Cho phép login với tài khoản hợp lệ | App đang ở màn Login | username=valid_user; password=valid_pass | 1. Nhập username hợp lệ  2. Nhập password hợp lệ  3. Bấm Login  4. Kiểm tra kết quả | User vào Home thành công | Critical | Smoke | High | Pass |  | Core flow |
+| PROF_02 | Profile | Update Name | Không cho lưu khi Name trống | User đã login | Name="" | 1. Mở màn hình Profile  2. Xóa toàn bộ Name  3. Bấm Save  4. Kiểm tra kết quả | Không lưu dữ liệu, hiển thị lỗi “Name is required” | High | Validation | Medium | Fail | System allowed saving with empty Name - JIRA-123 | Required field |
 
 ---
 
