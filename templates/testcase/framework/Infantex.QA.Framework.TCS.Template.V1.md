@@ -113,7 +113,7 @@ Người chạy test theo dõi lần lượt theo trình tự:
 | Trường | Cách dùng chuẩn trong Ver1.2 |
 |---|---|
 | Execution Status | Ghi trạng thái chạy case: Not Run / Pass / Fail / Blocked |
-| Actual Result | Chỉ ghi khi case không pass hoặc khi cần theo dõi thêm; không bắt buộc ghi cho case pass |
+| Actual Result | ghi bug name cho case Fail hoặc ghi khó khăn/phát sinh trong quá trình test khi cần. |
 
 #### Giá trị mặc định đề xuất
 - **Execution Status**: `Not Run`
